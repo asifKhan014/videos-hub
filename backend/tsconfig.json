@@ -57,6 +57,8 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "paths": {
       "@src/*": ["src/*"]
     }
