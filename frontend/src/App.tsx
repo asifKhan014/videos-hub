@@ -1,8 +1,12 @@
 import React from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 
 const App: React.FC = () => {
   return (
-    <h1 className='font-bold'>Hello world</h1>
+    <>
+    <RouterProvider router={router} />
+    </>
   )
 }
 

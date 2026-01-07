@@ -3,8 +3,11 @@ const app = express();
 import dotenv from 'dotenv';
 import connectDB from './config/db.ts';
 import router from './route/index.ts';
+import passport from './config/passportJwtStrategy.ts';
 dotenv.config();
 
+
+app.use(passport.initialize());
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use("/api/v1", router);

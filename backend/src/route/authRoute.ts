@@ -1,7 +1,7 @@
-import { signUpUser } from '../controller/auth/authController.ts';
+import { signInUser, signUpUser } from '../controller/auth/authController.ts';
 import express from 'express';
 const router = express.Router();
 
 router.post("/signup", signUpUser);
-
+router.post("/signin", signInUser);
 export default router;  
