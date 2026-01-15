@@ -8,6 +8,6 @@ export const sendResponse = (res: Response, status: number, message: string, dat
   res.status(status).json({
     success: status >= 200 && status < 300,
     message,
-    data
+    ...data
   });
 };

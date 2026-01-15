@@ -1,11 +1,15 @@
 import React from 'react'
 import Layout from '../../components/layout'
+import type { AppDispatch } from '../../reducers/store';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../../reducers/auth/authReducer';
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = React.useState({
-    username: "",
+    email: "",
     password: "",
   });
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -17,7 +21,9 @@ const SignIn: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle sign-in logic here
-    console.log("Form Data Submitted: ", formData);
+    const { email, password } = formData;
+    dispatch(signInUser({ email, password }));
+
   }
   return (
    <Layout>
@@ -25,22 +31,22 @@ const SignIn: React.FC = () => {
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-3">Sign In Page</h1>
         <p className="text-xl font-medium text-center text-gray-800 mb-3">Sign in to your account</p>
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Username:
+              email:
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               required
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-              placeholder="Enter your username"
-              value={formData.username}
+              placeholder="Enter your email"
+              value={formData.email}
               onChange={handleChange}
             />
           </div>

@@ -1,13 +1,19 @@
-import React from 'react'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './router'
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
+import { Provider } from "react-redux";
+import { store } from "./reducers/store";
+import { Toaster } from "sonner";
 
 const App: React.FC = () => {
   return (
     <>
-    <RouterProvider router={router} />
+      <Provider store={store}>
+        <Toaster position="bottom-right" richColors />
+        <RouterProvider router={router} />
+      </Provider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

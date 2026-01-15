@@ -4,9 +4,15 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.ts';
 import router from './route/index.ts';
 import passport from './config/passportJwtStrategy.ts';
+import cors from 'cors';
 dotenv.config();
 
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    optionsSuccessStatus: 200 
+};
 
+app.use(cors(corsOptions));
 app.use(passport.initialize());
 const PORT = process.env.PORT || 3000;
 app.use(express.json());

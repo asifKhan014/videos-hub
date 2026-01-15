@@ -1,6 +1,9 @@
 import React from "react";
 import Layout from "../../components/layout";
 import type { SignUpFormData } from "../../types";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../reducers/store";
+import { signUpUser } from "../../reducers/auth/authReducer";
 
 const SignUp: React.FC = () => {
   const [formData, setFormData] = React.useState<SignUpFormData>({
@@ -8,6 +11,7 @@ const SignUp: React.FC = () => {
     email: "",
     password: "",
   });
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -19,7 +23,7 @@ const SignUp: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle sign-up logic here
-    console.log("Form Data Submitted: ", formData);
+    dispatch(signUpUser(formData))
   };
   return (
     <Layout>
